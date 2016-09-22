@@ -10,7 +10,4 @@ module.exports = function(app){
     app.get("/api/v1/findmatch/reject", cores.matchReject);
     app.get("/api/v1/findmatch/match", cores.matched);
     app.get("/api/v1/findmatch/unmatch", cores.unmatch);
-
-    //Request tyo
-    app.post("/api/v1/clear", cores.clear);
 }

@@ -276,31 +276,6 @@ module.exports.unmatch = function(req, res){
 }
 
 /*
-* Clear data like, reject, and match for development only
-*/
-module.exports.clear = function(req, res){
-    if(req.body.fbid){
-        User.findOne({fbid:req.body.fbid}, function(err, user){
-            if(err) return res.json({status:500, message:"Internal server error"});
-            if(user != null){
-                user.opLikes = [];
-                user.opRejects = [];
-                user.matched = [];
-
-                user.save(function(err){
-                    if(err) return res.json({status:500, message:"Internal server error"});
-                    return res.json({status:200, message:"Clear Success"});
-                });
-            }else{
-                return res.json({status:204, message:"User not found, result with no content"});
-            }
-        });
-    }else{
-        res.json({status:400, message:"Bad request"});
-    }
-}
-
-/*
 * @params: roomid -> String, userData -> JSON, partnerData -> JSON
 * @desc: add user that match each other to unique room for private chat
 */
