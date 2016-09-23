@@ -1,6 +1,6 @@
 # Jojoba-API
 
-A RESTful API created with Node.js for dating application the server just like Tinder. Also server can handle chat for every user that match each other using Firebase Cloud Messaging. This project uses MongoDB to store all user data and chat data.
+A RESTful API created with Node.js and Express Framework for dating application the server just like Tinder. Also server can handle chat for every user that match each other using Firebase Cloud Messaging. This project uses MongoDB to store all user data and chat data.
 
 #Getting Started
 
