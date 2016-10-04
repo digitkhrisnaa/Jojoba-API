@@ -36,84 +36,115 @@ Open terminal and move to project directory. After that install dependencies use
   
  
 #Running Project
-Hit API using curl. If you run on local system you can access base URL with http://localhost:[port] 
+**RESTful API URL**
+ 
+
+    http://your-local-or-cloud-domain:[port]
+
+if you use local system you can access url
+
+    http://localhost:8080
+
 
 **Header authorization** (Except login API and you will get token after login)
 
-    Authorization: bearer <your device token>
+|Name|Required|Value|
+|---|---|---|
+|Content-Type|true|application/json|
+|Authorization|true|(you will get token after login)|
 
 **Signin User**
 
-    POST -> /api/v1/login -> JSON Format ->
-    {
-    "fbid":<type: String, value: FB ID, required: true>,
-    "name":<type: String, value: Name, required: true>,
-    "url_photo":<type: String, value: URL Photo, required: true>,
-    "dob":<type: String, value: Date Of Birth, required: false>,
-    "gender":<type: String, value: enum: ['male', 'female'], required: true>
-    "religion":<type: String, value: enum: ['islam', 'christianity', 'hinduism', 'buddhism', 'other'], required: false>,
-    "loc":[<long>,<lat>] 
-    }
+    POST http://your-local-or-cloud-domain:[port]/api/v1/login
+
+|Name|Required|Value|Type|Example
+|---|---|---|---|---|
+|fbid|true|FB ID when login on client|String|"123123123"|
+|name|true|Your name|String|"John Doe"|
+|url_photo|true|url your photo|String|"url/picture/abc.jpg"|
+|dob|false|1990-12-30|String|"1990-12-30"|
+|gender|true|'male', 'female'|String|"male"|
+|religion|false|'islam', 'christianity', 'hinduism', 'buddhism', 'other'|String|"other"|
+|loc|false|[(lat),(long)]|String|"123.2,123.2"|
 
 **Update User**
 
-    POST -> /api/v1/update -> JSON Format ->
-    {
-    "fbid":<type: String, value: FB ID, required: true>,
-    "url_photo":<type: String, value: URL Photo, required: true>,
-    "dob":<type: String, value: Date Of Birth, required: false>,
-    "religion":<type: String, value: enum: ['islam', 'christianity', 'hinduism', 'buddhism', 'other'], required: false>,
-    "loc":[<long>,<lat>]
-    }
+    POST http://your-local-or-cloud-domain:[port]/api/v1/update
+
+|Name|Required|Value|Type|Example
+|---|---|---|---|---|
+|fbid|true|FB ID when login on client|String|"123123123"|
+|url_photo|false|url your photo|String|"url/picture/abc.jpg"|
+|dob|false|1990-12-30|String|"1990-12-30"|
+|religion|false|'islam', 'christianity', 'hinduism', 'buddhism', 'other'|String|"other"|
+|loc|false|[(lat),(long)]|String|"123.2,123.2"|
 
 **Find Match**
 
-    GET -> /api/v1/findmatch -> Parameter ->
-    a. fbid = value <type: string, required: true>
-    b. pagination = value <format type: number, example: 10, required: false, default server: 10>
-    c. age = value <format type: string, example: "19-23", required: false>
-    d. nearRadius = value <format type: number, example: 500, required: false, default server: 500>
-    e. gender = value <format type: string, example: "female", required: false>
-    f. religion = value <format type: string, example: "islam", required: false>
+    GET http://your-local-or-cloud-domain:[port]/api/v1/findmatch
+
+|Name|Required|Value|Type|Example
+|---|---|---|---|---|
+|fbid|true|FB ID when login on client|String|"123123123"|
+|pagination|false|Pagination return list you want|Number|20|
+|nearRadius|false|Radius for find partner on meter unit|Number|500|
+|gender|false|'male' or 'female'|String|"female"|
+|religion|false|'islam', 'christianity', 'hinduism', 'buddhism', 'other'|String|"other"|
 
 **Like People**
 
-    GET -> /api/v1/findmatch/like -> Parameter ->
-    a. fbid = value <type: string, required: true>
-    b. partnerId = value <type:string, required: true>
+    GET http://your-local-or-cloud-domain:[port]/api/v1/findmatch/like
+
+|Name|Required|Value|Type|Example
+|---|---|---|---|---|
+|fbid|true|FB ID when login on client|String|"123123123"|
+|partnerId|true|Partner FBID|String|"321321"|
 
 **Reject People**
 
-    GET -> api/v1/findmatch/reject -> Parameter ->
-    a. fbid = value <type: string, required: true>
-    b. partnerId = value <type:string, required: true>
+    GET http://your-local-or-cloud-domain:[port]/api/v1/findmatch/reject
+
+|Name|Required|Value|Type|Example
+|---|---|---|---|---|
+|fbid|true|FB ID when login on client|String|"123123123"|
+|partnerId|true|Partner FBID|String|"321321"|
 
 **List Match**
 
-    GET -> /api/v1/findmatch/match -> Parameter ->
-    a. fbid = value <type: string, required: true>
+    GET http://your-local-or-cloud-domain:[port]/api/v1/findmatch/match
+
+|Name|Required|Value|Type|Example
+|---|---|---|---|---|
+|fbid|true|FB ID when login on client|String|"123123123"|
 
 **Unmatch People**
 
-    GET -> /api/v1/findmatch/unmatch -> Parameter ->
-    a. fbid = value <type: string, required: true>
-    b. partnerId = value <type:string, required: true
+    GET http://your-local-or-cloud-domain:[port]/api/v1/findmatch/unmatch
+
+|Name|Required|Value|Type|Example
+|---|---|---|---|---|
+|fbid|true|FB ID when login on client|String|"123123123"|
+|partnerId|true|Partner FBID|String|"321321"|
 
 **Chat Matched People**
 
-    POST -> /api/v1/chat/send -> JSON Format ->
-    {
-    "roomid" : "xxx",
-    "fbid":"xxx",
-    "partnerid":"xxx",
-    "message":"xxx"
-    }
+    POST http://your-local-or-cloud-domain:[port]/api/v1/chat/send
+
+|Name|Required|Value|Type|Example
+|---|---|---|---|---|
+|roomid|true|Room id you and your partner|String|"SxuUf21"|
+|fbid|true|FB ID when login on client|String|"123123123"|
+|partnerId|true|Partner FBID|String|"321321"|
+|message|true|Your message|String|"Hello world"|
 
 **Retrieve Message**
 
-    GET -> /api/v1/chat/retrieve -> Parameter ->
-    a. roomid = xxx
-    
+    POST http://your-local-or-cloud-domain:[port]/api/v1/chat/retrieve
+
+|Name|Required|Value|Type|Example
+|---|---|---|---|---|
+|roomid|true|Room id you and your partner|String|"SxuUf21"|    
+
 
 **List HTTP Return**
 
