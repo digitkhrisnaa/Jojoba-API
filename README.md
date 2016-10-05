@@ -134,7 +134,6 @@ if you use local system you can access url
 |---|---|---|---|---|
 |roomid|true|Room id you and your partner|String|"SxuUf21"|
 |fbid|true|FB ID when login on client|String|"123123123"|
-|partnerId|true|Partner FBID|String|"321321"|
 |message|true|Your message|String|"Hello world"|
 
 **Retrieve Message**
