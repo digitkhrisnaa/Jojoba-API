@@ -51,7 +51,7 @@ if you use local system you can access url
 |Name|Required|Value|
 |---|---|---|
 |Content-Type|true|application/json|
-|Authorization|true|(you will get token after login)|
+|Authorization|true|Bearer (space) (your token)|
 
 **Signin User**
 
